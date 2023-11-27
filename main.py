@@ -7,7 +7,7 @@ from tkinter import messagebox
 
 
 
-
+#main window
 ctk.set_default_color_theme('green')
 ctk.set_appearance_mode('light')
 window = ctk.CTk()
@@ -20,7 +20,7 @@ window.geometry('1024x720')
 def click1():
     messagebox.showinfo("Info", "This app can cut the silence parts out of videos or audio files. \nSelect a video or audio file you would like to cut the silence out of.")
 
-#img1
+#img1 info on click
 image_path = os.path.join(os.path.dirname(__file__), 'images/7.png')
 image = ctk.CTkImage(light_image= Image.open(image_path), size = (50,50))
 image_label = ctk.CTkLabel(window, image = image, text = "")
@@ -29,8 +29,12 @@ Button1 = ctk.CTkButton(window, command = click1, height = 0, width= 0, image = 
 Button1.place(x = 10, y = 10)
 
 
+#frame
+font = ctk.CTkFont(family= "Beyond The Mountains", size = 20)
+frame = ctk.CTkFrame(window)
+frame.pack(padx = 70, pady = 25, fill="both", expand = True)
 
-
+#darkmode toggle
 def changeMode():
     val = switch.get()
     if val:
@@ -38,7 +42,13 @@ def changeMode():
     else:
         ctk.set_appearance_mode('light')
 
+switch = ctk.CTkSwitch(master= frame, text="Dark mode", onvalue= 1, offvalue= 0, command= changeMode)
+switch.place(relx = 0.9, rely=0.9, anchor="center")
 
+
+
+
+#windows explorer select file
 apps =[]
 def runApp():
     filename = filedialog.askopenfilename(initialdir="/", title= "Select File", 
@@ -47,11 +57,9 @@ def runApp():
     
     
 
-font = ctk.CTkFont(family= "Beyond The Mountains", size = 20)
-frame = ctk.CTkFrame(window)
-frame.pack(padx = 70, pady = 25, fill="both", expand = True)
 
 
+#progress bar
 progressbar = ctk.CTkProgressBar(frame, orientation="horizontal")
 progressbar.place(relx = 0.5, rely = 0.10, anchor = "center")
 progressbar.set(0)
@@ -63,9 +71,11 @@ def move():
 def stop():
     progressbar.stop()
 
+#start button
 start = ctk.CTkButton(frame, text = "Start", command = move)
 start.place(relx = 0.5, rely = 0.6, anchor = "center")
 
+#progress bar testing (hbd)
 bar = int(progressbar.get())
 while bar > 0:
     print(bar)
@@ -77,19 +87,19 @@ while bar > 0:
 label = ctk.CTkLabel(frame, text = 'Welcome', font = font)
 label.pack()
 
+#choose file type
 Combobox = ctk.CTkComboBox(frame, values=['Select export type','mp4', 'mp3', 'wav'])
-Combobox.place(relx = 0.5, rely = 0.4, anchor ="center")
+Combobox.place(relx = 0.5, rely = 0.45, anchor ="center")
 
 
-# PLACE APP NAME BELOW select file
-Text = ctk.CTkLabel(frame, text = apps)
-Text.place(relx = 0.5, rely = 0.25, anchor = "center")
+# SHOW APP NAME BELOW select file (test)
+Text = ctk.CTkLabel(frame, text = "File Name: ")
+Text.place(relx = 0.5, rely = 0.38, anchor = "center")
 
 button = ctk.CTkButton(frame, height = 50, width= 80, text = 'Choose a file', hover_color = 'white', command = runApp)
 button.place(relx = 0.5, rely = 0.3, anchor = "center")
 
-switch = ctk.CTkSwitch(master= frame, text="Dark mode", onvalue= 1, offvalue= 0, command= changeMode)
-switch.place(relx = 0.9, rely=0.9, anchor="center")
+
 
 
 #test slider
