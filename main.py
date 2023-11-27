@@ -92,14 +92,15 @@ switch = ctk.CTkSwitch(master= frame, text="Dark mode", onvalue= 1, offvalue= 0,
 switch.place(relx = 0.9, rely=0.9, anchor="center")
 
 
+#test slider
 slider = ctk.CTkSlider(frame)
 slider.pack()
 window.mainloop()
 
 
 
-#img2
-image2_path = os.path.join(os.path.dirname(__file__), 'images/bg.jpg')
-image2 = ctk.CTkImage(light_image= Image.open(image2_path), size = (1024,720))
-wndLab = ctk.CTkLabel(window, image = image2, text = "")
-wndLab.pack()
+#img2 canceled
+#image2_path = os.path.join(os.path.dirname(__file__), 'images/bg.jpg')
+#image2 = ctk.CTkImage(light_image= Image.open(image2_path), size = (1024,720))
+#wndLab = ctk.CTkLabel(window, image = image2, text = "")
+#wndLab.pack()
