@@ -5,7 +5,6 @@ from PIL import Image, ImageTk
 from tkinter import messagebox
 import threading
 import time
-import pathlib  
 
 
 
