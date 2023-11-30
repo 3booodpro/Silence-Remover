@@ -14,7 +14,8 @@ def select_file():
     global count
     file_path = filedialog.askopenfilename(filetypes=[("Video Files", "*.mp4;*.avi"), ("Audio Files", "*.mp3;*.wav")])
     if file_path:
-        deletebutton.pack(side = LEFT)
+        deletebutton.place(relx = 0.5,rely = 0.5)
+        deletebutton.lift()
         file_name = file_path.split("/")[-1]  # Extract the file name from the path
         file_size = os.path.getsize(file_path)
         size_kb = file_size / 1024

@@ -1,2 +1,9 @@
 pip install auto-editor
 pip install customtkinter
+
+#Notes for Karam
+1- Change Searchbar into a button
+2- make the options and the data appear under the button when a file is selected
+3- after pressing "cut it" change the screen into a new one with a progress bar and label saying "Cutting.."
+4 - back to the main menu
+5- :D be happy
