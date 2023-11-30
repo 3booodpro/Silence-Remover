@@ -14,8 +14,7 @@ def select_file():
     global count
     file_path = filedialog.askopenfilename(filetypes=[("Video Files", "*.mp4;*.avi"), ("Audio Files", "*.mp3;*.wav")])
     if file_path:
-        deletebutton.place(relx = 0.5,rely = 0.5)
-        deletebutton.lift()
+        deletebutton.pack(side=LEFT,fill=BOTH)
         file_name = file_path.split("/")[-1]  # Extract the file name from the path
         file_size = os.path.getsize(file_path)
         size_kb = file_size / 1024
@@ -25,11 +24,11 @@ def select_file():
 
 
 def delete_selection():
-    deletebutton.grid_forget()   # Hide the Delete button
+    deletebutton.pack_forget()   # Hide the Delete button
     nextab.place_forget()     # Hide the Next button
     Namesize.configure(text="")
+
       
-deletebutton = CTkButton(root, text = "Delete Selection", command = delete_selection)
 
 def next_page():
     label.place_forget()
@@ -59,7 +58,9 @@ image2 = CTkImage(light_image= Image.open("img11.png"), size = (30,30))
 # file_entry = CTkEntry(frame,border_width=0)
 # file_entry.pack(side=LEFT,fill=BOTH,expand=True,anchor=CENTER)
 file_select_button = CTkButton(frame,text="Select file",fg_color="transparent",width=36, image = image2, font = ("Aldo The Apache", 18), text_color= 'white', command = select_file, hover_color='gray')
-file_select_button.pack(fill=BOTH)
+file_select_button.pack(side=LEFT,fill=BOTH,expand=True)
+
+deletebutton = CTkButton(master=frame, text="X", fg_color="transparent", width=36, text_color= 'white' ,hover_color='gray', font=("Aldo The Apache", 18), command = delete_selection)
 
 previous_time = time()
 image = Image.open("BG.png")
@@ -72,7 +73,8 @@ offset_y = 0
 image3 = CTkImage(light_image= Image.open("img12.png"), size = (50,50))
 nextab = CTkButton(root, text = "Next", image = image3, fg_color='transparent', width=16, hover_color='gray', border_color='gray', border_width=1, font = ("Aldo The Apache", 18), command= next_page,)
 
-while True:
+def process():
+    global previous_time, image, speed, offset_x, offset_y
     canvas.delete('all')
     
     sine_points = [(0,root.winfo_height())]
@@ -81,9 +83,9 @@ while True:
         pos = (x,y)
         sine_points.append(pos)
 
-    for x in range(-64,root.winfo_width() + 64,64):
-        for y in range(-64,root.winfo_height() + 64,64):
-            canvas.create_image(x - offset_x,y + offset_y,image=image,anchor=NW)
+    # for x in range(-64,root.winfo_width() + 64,64):
+    #     for y in range(-64,root.winfo_height() + 64,64):
+    #         canvas.create_image(x - offset_x,y + offset_y,image=image,anchor=NW)
 
     canvas.create_line(sine_points,fill="#2e2e2e",width=64)
     
@@ -97,4 +99,7 @@ while True:
         offset_x -= 64
     elif offset_y >= 64:
         offset_y -= 64
-    root.update()
+    root.after(1,process)
+
+root.after(1,process)
+root.mainloop()
