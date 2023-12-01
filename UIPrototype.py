@@ -93,19 +93,21 @@ canvas.pack(fill=BOTH,expand=TRUE)
 Namesize = CTkLabel(root, text = "", font = ("Aldo the Apache", 16))
 Namesize.place(relx = 0.5, rely = 0.45, anchor = "center")
 
-label = CTkLabel(root,text="Silence",font=("Aldo The Apache", 46), text_color='#e3e3e3')
-label2 = CTkLabel(root,text="Remover",font=("Aldo The Apache", 46), text_color='#0099cc')
-label.place(relx=0.44,rely=0.3,anchor=CENTER)
-label2.place(relx=0.56,rely=0.3,anchor=CENTER)
+title_frame = CTkFrame(root,fg_color="transparent",bg_color="transparent")
+title_frame.place(relx=0.5,rely=0.3,anchor=CENTER)
+label = CTkLabel(title_frame,text="Silence ",font=("Aldo The Apache", 46), text_color='#e3e3e3')
+label2 = CTkLabel(title_frame,text="Remover",font=("Aldo The Apache", 46), text_color='#0099cc')
+label.pack(side=LEFT)
+label2.pack(side=LEFT)
 
 
 frame = CTkFrame(root,width=256,height=36,border_width=32,border_color="")
 frame.place(relx=0.5,rely=0.4,anchor=CENTER)
 frame.propagate(0)
 
-export5 = CTkComboBox(root, values= ['Select export type','mp4', 'mp3'], width= 256, border_color="#484A48", button_color="#484A48", border_width=2, fg_color='#2C2C2C', 
+export5 = CTkComboBox(root, values= ['One Clip', 'Clip Sequence', 'Premiere', 'Davinci Resolve', 'Final Cut Pro', 'Shotcut'], width= 256, border_color="#484A48", button_color="#484A48", border_width=2, fg_color='#2C2C2C', 
                      text_color='white', font= ("Aldo the Apache", 16), dropdown_font=("Aldo the Apache", 12), state= "readonly", hover=True)
-
+export5.set('One Clip')
 
    
 
