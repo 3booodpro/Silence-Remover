@@ -7,3 +7,6 @@ pip install customtkinter
 3- after pressing "cut it" change the screen into a new one with a progress bar and label saying "Cutting.."
 4 - back to the main menu
 5- :D be happy
+
+#NOTE TO EVERYONE!
+replace the fcp7.py, fcp11.py, json.py, shotcut.py in the main directory with the library ones
