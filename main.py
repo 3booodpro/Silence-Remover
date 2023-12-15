@@ -10,6 +10,16 @@ root = CTk()
 root.title("Silence Remover")
 root.geometry("1280x720")
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 #EXPLORER 
 def select_file():
     global file_path
@@ -89,7 +99,7 @@ def stopbar(progress_frame, progress_bar):
     finish_label.place(relx = 0.5, rely = 0.45, anchor = CENTER)
     progress_label.configure(text_color = "#3C9E6D")
 
-    image4 = CTkImage(light_image=Image.open("images/img14.png"), size=(30,30))
+    image4 = CTkImage(light_image=Image.open(resource_path("images/img14.png")), size=(30,30))
     backtomenu = CTkButton(root, text= "Return to Main Menu", text_color='white', fg_color='transparent', font = ("Aldo the Apache", 26), image=image4, hover_color='#3C9E6D', command=mainmenu)
     backtomenu.place(relx = 0.5, rely = 0.55, anchor = CENTER)
     finished = False
@@ -120,7 +130,7 @@ export5.set('One Clip')
 export5.lift(aboveThis=frame)
 export5.bind("<<ComboboxSelected>>")
 
-image2 = CTkImage(light_image= Image.open("images/img11.png"), size = (30,30))
+image2 = CTkImage(light_image= Image.open(resource_path("images/img11.png")), size = (30,30))
 # file_entry = CTkEntry(frame,border_width=0)
 # file_entry.pack(side=LEFT,fill=BOTH,expand=True,anchor=CENTER)
 file_select_button = CTkButton(frame,text="Select file",fg_color="transparent",width=36, image = image2,
@@ -128,7 +138,7 @@ file_select_button = CTkButton(frame,text="Select file",fg_color="transparent",w
                                 , border_color='#859da8',border_width=float(0.7))
 file_select_button.pack(side=LEFT,fill=BOTH,expand=True)
 
-imagedel = CTkImage(light_image= Image.open("images/img13.png"), size = (25,25))
+imagedel = CTkImage(light_image= Image.open(resource_path("images/img13.png")), size = (25,25))
 deletebutton = CTkButton(master=frame, text="X", fg_color="transparent", width=36, text_color= 'white' ,
                          hover_color='#9E3C3C', font=("Aldo The Apache", 18), command = delete_selection, image = imagedel
                          ,border_width=1, border_color='#9E3C3C')
@@ -140,7 +150,7 @@ speed = 30
 offset_x = 0
 offset_y = 0
 
-image3 = CTkImage(light_image= Image.open("images/img12.png"), size = (50,50))
+image3 = CTkImage(light_image= Image.open(resource_path("images/img12.png")), size = (50,50))
 nextab = CTkButton(root, text = "Cut it!", image = image3, fg_color='transparent', width=16, 
                    hover_color='#4b8b60', border_color='#3C9E6D', border_width=1, font = ("Aldo The Apache", 18), command= next_page)
 

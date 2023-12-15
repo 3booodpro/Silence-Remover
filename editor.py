@@ -7,7 +7,7 @@ import auto_editor.utils.log as edit_log
 finished = False
 
 def CutFile(input_path : str, export_type : str = None):
-    my_args = edit.Args(input=[input_path],export=export_type) # set out input
+    my_args = edit.Args(input=[input_path],export=export_type,quiet=True) # set out input
 
     # setting ffmpeg to use it later (there's nothing fancy here..)
     ffmpeg = ffwrapper.FFmpeg(
